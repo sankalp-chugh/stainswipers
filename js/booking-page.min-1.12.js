@@ -125,6 +125,10 @@ function loadCategories() {
 function loadSubcategories(e) {
     var a = $("#service" + e).val();
     $.ajax({
+        beforeSend: function() {
+                    $('#subcategoryDataSection').append("<img src='img/loading.gif' id='loader' height='100' width='70' align='center'>");},
+        complete: function(){
+                    $('#subcategoryDataSection').find("#loader").remove();},
         data: "categoryID=" + e,
         url: "getSubcategories.php",
         type: "POST",
@@ -144,6 +148,10 @@ function loadSubcategories(e) {
 
 function loadVariables(e, a) {
     $("#subcategoryAMC" + a).html(""), $("#cartPrice" + a).remove(), calculateTotal(), $.ajax({
+        beforeSend: function() {
+                    $('#subcategoryDataSection').append("<img src='img/loading.gif' id='loader' height='100' width='70' align='center'>");},
+        complete: function(){
+                    $('#subcategoryDataSection').find("#loader").remove();},
         data: "subcategoryID=" + e,
         url: "getVariables.php",
         type: "POST",
@@ -420,7 +428,7 @@ function applyCoupon() {
         var a = $("#topMenuCity").val(),
             t = "false",
             i = $("#makePaymentTotalAmount").html().match(/\d+/);
-        $.ajax({
+        $.ajax({            
             url: "/api/applyCoupon.php",
             data: "couponName=" + e + "&cityID=" + a + "&accessingFromApp=" + t + "&orderAmount=" + i,
             type: "POST",
@@ -510,6 +518,10 @@ function removeCoupon() {
 function showPrice(e) {
     var a = ($(e).attr("id").match(/\d+/), $(e).val());
     "choose" != a && $.ajax({
+        beforeSend: function() {
+                    $('#subcategoryDataSection').append("<img src='img/loading.gif' id='loader' height='100' width='70' align='center'>");},
+        complete: function(){
+                    $('#subcategoryDataSection').find("#loader").remove();},
         data: "variableID=" + a,
         url: "getVariableCost.php",
         type: "POST",
