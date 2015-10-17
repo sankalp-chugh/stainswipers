@@ -10,7 +10,7 @@
     	$subcategoryVar = $db->getSubcategoryVariables($subcategoryID);
 
 		if (isset($subcategoryVar)) {			
-			$response['status'] = "successful";
+			$response['status'] = "successful";			
 			$varData = "<p class='stepLabels'>Select Type : </p><div class='select-style'><select id='variablesSelectBox{$subcategoryID}' onchange='javascript: showPrice(this);'>";
 			$varData .= "<option value='choose'>Choose Option</option>";
 			foreach ($subcategoryVar as $key => $value) {
@@ -18,7 +18,7 @@
 			}
 			$varData .= "</select></div>";
 			$response['categoryID'] = $subcategoryVar[0][0];
-			$response['variableData'] = $varData;
+			$response['variableData'] = $varData;			
 			echo json_encode($response);
 		}else{
 			echo json_encode($response);

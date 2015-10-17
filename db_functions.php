@@ -32,7 +32,7 @@
 	     */
 	    public function getSubcategoryVariables($subcategoryID) {
 	    	include_once("config.php");
-	    	$subvar_list_query = mysql_query("SELECT  `service_id_fk` AS categoryId, `sub_type_id` AS subcategoryVarId,  `sub_type_name` AS name,  `sub_type_price` AS price	FROM ".PREFIX."`subcategory_type` LEFT JOIN ".PREFIX."`subcategory_type_detail` ON  `sub_type_id_fk` =  `sub_type_id` WHERE  `service_sub_id_fk` =".$subcategoryID); 
+	    	$subvar_list_query = mysql_query("SELECT `service_id_fk` AS categoryId, `id` AS subcategoryVarId,  `sub_type_name` AS name,  `sub_type_price` AS price	FROM ".PREFIX."`subcategory_type` LEFT JOIN ".PREFIX."`subcategory_type_detail` ON  `sub_type_id_fk` =  `sub_type_id` WHERE  `service_sub_id_fk` =".$subcategoryID); 
 	    	$subvar_list = array();  		    	
 	    	while($row = mysql_fetch_array($subvar_list_query, MYSQL_NUM)){
 	    		$subvar_list[] = $row;
@@ -40,8 +40,20 @@
 	    	return $subvar_list;
 	    }
 
+	    /**
+	     * Getting variable attrib for the applied variable id
+	     * Return attributes
+	     */
+	    public function getVariableAttrib($variableID) {
+	    	include_once("config.php");
+	    	$var_list_query = mysql_query("SELECT `service_id_fk` AS categoryId, `service_sub_id_fk` AS subcategoryId, `sub_type_price` AS price FROM ".PREFIX."`subcategory_type` WHERE  `id` =".$variableID); 
+	    	$var_list = array();  		    	
+	    	$var_list = mysql_fetch_assoc($var_list_query, MYSQL_NUM);
+	    	return $var_list;
+	    }
+
 	}
 
-	$db = new DB_Functions;
-	$db->getSubcategoryVariables(1);
+	//$db = new DB_Functions;
+	//$db->getVariableAttrib(1);
 ?>

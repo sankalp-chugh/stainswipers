@@ -511,13 +511,14 @@ function showPrice(e) {
     var a = ($(e).attr("id").match(/\d+/), $(e).val());
     "choose" != a && $.ajax({
         data: "variableID=" + a,
-        url: "/api/getVariableCost.php",
+        url: "getVariableCost.php",
         type: "POST",
         success: function(e) {
             var t = jQuery.parseJSON(e);
             if ("successful" == t.status) {
-                var i = Math.round(1 * t.payNowCost * 1.14, 0);
-                i = 10 * Math.round(i / 10);
+                var i = t.payNowCost;
+                //var i = Math.round(1 * t.payNowCost * 1.14, 0);
+                //i = 10 * Math.round(i / 10);
                 var o = (t.payLaterCost, t.categoryID),
                     r = (t.subcategoryID, $("#serviceName" + o).html()),
                     s = $("input[type='radio'][name='categoryRadio" + o + "']:checked").val();
