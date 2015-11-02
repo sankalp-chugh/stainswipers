@@ -1,5 +1,3 @@
 config.php
-
-
-config.php
+*.sql
 swipe_db.sql
