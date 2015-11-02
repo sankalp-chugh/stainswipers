@@ -152,10 +152,10 @@ function loadVariables(e, a) {
                     $('#subcategoryDataSection').append("<img src='img/loading.gif' id='loader' height='100' width='70' align='center'>");},
         complete: function(){
                     $('#subcategoryDataSection').find("#loader").remove();},
-        data: "subcategoryID=" + e,
+        data: "subcategoryID=" + a +"&categoryID=" + e,
         url: "getVariables.php",
         type: "POST",
-        success: function(e) {
+        success: function(e) { 
             var a = jQuery.parseJSON(e);
             if ("successful" == a.status)
                 if ("" == a.variableData) {
@@ -726,7 +726,7 @@ $(document).ready(function() {
             //ga("send", "event", "service", "unselected", s)
         }
     }), $(document).on("click", ".cRadio", function() {
-        var e = $(this).attr("name").match(/\d+/),
+        var e = $(this).attr("value").match(/\d+/),
             a = $(this).attr("id").match(/\d+/);
         loadVariables(a, e)
     }), $(document).on("change", ".agentRadio", function() {

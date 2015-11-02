@@ -18,7 +18,7 @@
 			$response['status'] = "successful";
 			$subData = "";
 			foreach ($subcategories as $key => $value) {
-				$subData .= "<input type='radio' id='subcategoryRadio{$subcategories[$key][0]}' name='categoryRadio".$categoryID."' value=".$subcategories[$key][1]." class='cRadio'><label for='subcategoryRadio{$subcategories[$key][0]}' class='stepLabels'><span></span>".$subcategories[$key][1]."</label>";
+				$subData .= "<input type='radio' id='category".$categoryID."sub{$subcategories[$key][0]}' name='categoryRadio".$categoryID."' value=".$subcategories[$key][0]." class='cRadio'><label for='category".$categoryID."sub{$subcategories[$key][0]}' class='stepLabels'><span></span>".$subcategories[$key][1]."</label>";
 			}	
 			$subData .="<p class='homeText' id='subcategoryDescription{$categoryID}' itemprop='description' style='text-align: justify;'></p><div id='variablesSection{$categoryID}'></div><p class='homeText' id='subcategoryAMC{$categoryID}'></p><hr>";
 			

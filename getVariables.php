@@ -2,12 +2,13 @@
 	if(isset($_POST['subcategoryID']) && !empty($_POST['subcategoryID'])){
 		require_once('db_functions.php');
 		$subcategoryID = $_POST['subcategoryID'];
+		$categoryID = $_POST['categoryID'];
 		$db = new DB_Functions();
 
 		// response Array
     	$response = array("status" => "failed", "subcategoryID" => $subcategoryID, "payNowCost" => "", "payLaterCost" => "","categoryID" => "","subcategoryDescription" => "", "variableData" => "");
     	
-    	$subcategoryVar = $db->getSubcategoryVariables($subcategoryID);
+    	$subcategoryVar = $db->getSubcategoryVariables($subcategoryID,$categoryID);
 
 		if (isset($subcategoryVar)) {			
 			$response['status'] = "successful";			
